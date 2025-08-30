@@ -1,0 +1,75 @@
+{
+  "total": [
+    {
+      "id": "grand",
+      "value": 1.2000000000000002
+    }
+  ],
+  "coin-values": [
+    {
+      "id": "quarter",
+      "value": 0.25,
+      "total": 1
+    },
+    {
+      "id": "dime",
+      "value": 0.05,
+      "total": 0.15000000000000002
+    },
+    {
+      "id": "penny",
+      "value": 0.01,
+      "total": 0.05
+    }
+  ],
+  "entries": [
+    {
+      "id": "1",
+      "date-added": null,
+      "coin": null,
+      "amount-added": null
+    },
+    {
+      "id": "f43e",
+      "date-added": "2025-08-30T22:35:02.720Z",
+      "coin": "quarter",
+      "amount-added": 2.5
+    },
+    {
+      "id": "f697",
+      "date-added": "2025-08-30T22:35:11.381Z",
+      "coin": "dime",
+      "amount-added": 0.5
+    },
+    {
+      "id": "fa24",
+      "date-added": "2025-08-30T22:35:19.542Z",
+      "coin": "penny",
+      "amount-added": 1
+    },
+    {
+      "id": "a020",
+      "date-added": "2025-08-30T23:22:39.605Z",
+      "coin": "quarter",
+      "amount-added": 0.25
+    },
+    {
+      "id": "3654",
+      "date-added": "2025-08-30T23:22:42.411Z",
+      "coin": "quarter",
+      "amount-added": 0
+    },
+    {
+      "id": "9cbf",
+      "date-added": "2025-08-30T23:26:09.351Z",
+      "coin": "quarter",
+      "amount-added": 0
+    },
+    {
+      "id": "da31",
+      "date-added": "2025-08-30T23:33:31.257Z",
+      "coin": "penny",
+      "amount-added": 0.01
+    }
+  ]
+}
