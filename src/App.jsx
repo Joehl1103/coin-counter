@@ -1,28 +1,35 @@
 import { useState, useEffect } from 'react'
 import service from './services'
+import Entries from './Entries'
 
 function App() {
   const [coinType, setCoinType] = useState('quarter')
-  console.log('coin type',coinType)
   const [count, setCount] = useState(0)
   const [total, setTotal] = useState(null)
   const [stateReset,setStateReset] = useState(true)
   const [quarters,setQuarters] = useState(0)
+  const [nickels,setNickels] = useState(0)
   const [dimes, setDimes] = useState(0)
   const [pennies,setPennies] = useState(0)
+  const [entries,setEntries] = useState([])
 
   useEffect(() => {
     service.getTotal()
       .then(t => { 
-        const response = t 
         setTotal(t)
       })
     service.getAllCoins()
       .then(coinObject => {
         setQuarters(coinObject[0].total)
-        setDimes(coinObject[1].total)
-        setPennies(coinObject[2].total)
+        setNickels(coinObject[1].total)
+        setDimes(coinObject[2].total)
+        setPennies(coinObject[3].total)
       })
+      service.getEntries()
+        .then(e => {
+          console.log('e in useEffect',e)
+          setEntries(e)
+        })
   },[stateReset])
 
   const handleSubmit = async (event) => {
@@ -36,9 +43,9 @@ function App() {
           .then(() => {
             console.log('updated')
               const newEntry = {
-                    "date-added": new Date(),
+                    "dateAdded": new Date(),
                     "coin": coinType,
-                    "amount-added": amountAdded
+                    "amountAdded": amountAdded
                   }
               service.addEntry(newEntry)
               setCoinType('')
@@ -54,6 +61,7 @@ return (
     <h2>Totals</h2>
     <div>Grand total: {total ? (total.toString().length > 4 ? total.toFixed(2) : total) : `error`}</div>
     <div>Quarters: {quarters ? (quarters.toString().length > 4 ? quarters.toFixed(2) : quarters) : `error`}</div>
+    <div>Nickels: {nickels ? (nickels.toString().length > 4 ? nickels.toFixed(2) : nickels) : `error`}</div>
     <div>Dimes: {dimes ? (dimes.toString().length > 4 ? dimes.toFixed(2) : dimes) : `error`}</div>
     <div>Pennies: {pennies ? (pennies.toString().length > 4 ? pennies.toFixed(2) : pennies) : `error`}</div>
     <h2>Add some coins</h2>
@@ -62,6 +70,7 @@ return (
         <label>coin type</label>{" "}
         <select type="option" value={coinType} onChange={(e) => setCoinType(e.target.value)}>
           <option value="quarter">quarter</option>
+          <option value="nickel">nickel</option>
           <option value="dime">dime</option>
           <option value="penny">penny</option>
         </select>
@@ -72,6 +81,8 @@ return (
       </div>
       <button type="submit">add</button>
     </form>
+    <h2>Entries</h2>
+    <Entries entries={entries}/>
   </>
 )
 }

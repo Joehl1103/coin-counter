@@ -51,7 +51,7 @@ const addEntry = async (entry) => {
 const getEntries = async () => {
     const response = await axios.get(`${baseUrl}/entries`)
     const entries = response.data.slice(response.data[1],response.data.length)
-    console.log('entries',entries)
+    return entries
 }
 
-export default { getTotal, updateTotal, getAllCoins, getCoinObject, addEntry } 
+export default { getTotal, updateTotal, getAllCoins, getCoinObject, addEntry, getEntries } 
