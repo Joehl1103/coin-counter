@@ -2,29 +2,29 @@
   "total": [
     {
       "id": "grand",
-      "value": 0.55
+      "value": 0.25
     }
   ],
   "coin-values": [
     {
       "id": "quarter",
       "value": 0.25,
-      "total": 1.5
-    },
-    {
-      "id": "nickel",
-      "value": 0.1,
-      "total": 0.30000000000000004
+      "total": 12.25
     },
     {
       "id": "dime",
+      "value": 0.1,
+      "total": 3.3000000000000003
+    },
+    {
+      "id": "nickel",
       "value": 0.05,
-      "total": 0.15000000000000002
+      "total": 0.65
     },
     {
       "id": "penny",
       "value": 0.01,
-      "total": 0.05
+      "total": 1.17
     }
   ],
   "entries": [
@@ -35,16 +35,40 @@
       "amountAdded": null
     },
     {
-      "id": "6f47",
-      "dateAdded": "2025-08-31T00:10:10.090Z",
-      "coin": "nickel",
+      "id": "e6c5",
+      "dateAdded": "2025-08-31T00:20:45.034Z",
+      "coin": "dime",
+      "amountAdded": 0.30000000000000004
+    },
+    {
+      "id": "3f70",
+      "dateAdded": "2025-08-31T00:25:45.231Z",
+      "coin": "dime",
       "amountAdded": 0.1
     },
     {
-      "id": "26e4",
-      "dateAdded": "2025-08-31T00:10:22.376Z",
-      "coin": "nickel",
-      "amountAdded": 0.2
+      "id": "75ed",
+      "dateAdded": "2025-08-31T18:46:16.803Z",
+      "coin": "dime",
+      "amountAdded": 0.1
+    },
+    {
+      "id": "08df",
+      "dateAdded": "2025-08-31T19:10:57.337Z",
+      "coin": "dime",
+      "amountAdded": 0.1
+    },
+    {
+      "id": "77df",
+      "dateAdded": "2025-09-27T14:44:19.791Z",
+      "coin": "quarter",
+      "amountAdded": 1
+    },
+    {
+      "id": "a84d",
+      "dateAdded": "2025-10-25T17:02:35.204Z",
+      "coin": "quarter",
+      "amountAdded": 0.25
     }
   ]
 }

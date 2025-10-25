@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import service from './services'
 import Entries from './Entries'
+import './styles.css'
 
 function App() {
   const [coinType, setCoinType] = useState('quarter')
@@ -21,8 +22,8 @@ function App() {
     service.getAllCoins()
       .then(coinObject => {
         setQuarters(coinObject[0].total)
-        setNickels(coinObject[1].total)
-        setDimes(coinObject[2].total)
+        setDimes(coinObject[1].total)
+        setNickels(coinObject[2].total)
         setPennies(coinObject[3].total)
       })
       service.getEntries()
@@ -60,18 +61,18 @@ return (
   <>
     <h2>Totals</h2>
     <div>Grand total: {total ? (total.toString().length > 4 ? total.toFixed(2) : total) : `error`}</div>
-    <div>Quarters: {quarters ? (quarters.toString().length > 4 ? quarters.toFixed(2) : quarters) : `error`}</div>
-    <div>Nickels: {nickels ? (nickels.toString().length > 4 ? nickels.toFixed(2) : nickels) : `error`}</div>
-    <div>Dimes: {dimes ? (dimes.toString().length > 4 ? dimes.toFixed(2) : dimes) : `error`}</div>
-    <div>Pennies: {pennies ? (pennies.toString().length > 4 ? pennies.toFixed(2) : pennies) : `error`}</div>
+    <div id='quarters'>Quarters: {quarters ? (quarters.toString().length > 4 ? quarters.toFixed(2) : quarters) : `error`}</div>
+    <div id='dimes'>Dimes: {dimes ? (dimes.toString().length > 4 ? dimes.toFixed(2) : dimes) : `error`}</div>
+    <div id='nickels'>Nickels: {nickels ? (nickels.toString().length > 4 ? nickels.toFixed(2) : nickels) : `error`}</div>
+    <div id='pennies'>Pennies: {pennies ? (pennies.toString().length > 4 ? pennies.toFixed(2) : pennies) : `error`}</div>
     <h2>Add some coins</h2>
     <form onSubmit={handleSubmit}>
       <div>
         <label>coin type</label>{" "}
         <select type="option" value={coinType} onChange={(e) => setCoinType(e.target.value)}>
           <option value="quarter">quarter</option>
-          <option value="nickel">nickel</option>
           <option value="dime">dime</option>
+          <option value="nickel">nickel</option>
           <option value="penny">penny</option>
         </select>
       </div>
