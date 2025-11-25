@@ -2,23 +2,20 @@ import { useState, useEffect } from 'react'
 import service from './services'
 import Entries from './Entries'
 import './styles.css'
+import Total from './Total'
+import utils from './utils/utils.js'
 
 function App() {
   const [coinType, setCoinType] = useState('quarter')
   const [count, setCount] = useState(0)
-  const [total, setTotal] = useState(null)
-  const [stateReset,setStateReset] = useState(true)
-  const [quarters,setQuarters] = useState(0)
-  const [nickels,setNickels] = useState(0)
+  const [stateReset, setStateReset] = useState(true)
+  const [quarters, setQuarters] = useState(0)
+  const [nickels, setNickels] = useState(0)
   const [dimes, setDimes] = useState(0)
-  const [pennies,setPennies] = useState(0)
-  const [entries,setEntries] = useState([])
+  const [pennies, setPennies] = useState(0)
+  const [entries, setEntries] = useState([])
 
   useEffect(() => {
-    service.getTotal()
-      .then(t => { 
-        setTotal(t)
-      })
     service.getAllCoins()
       .then(coinObject => {
         setQuarters(coinObject[0].total)
@@ -26,66 +23,62 @@ function App() {
         setNickels(coinObject[2].total)
         setPennies(coinObject[3].total)
       })
-      service.getEntries()
-        .then(e => {
-          console.log('e in useEffect',e)
-          setEntries(e)
-        })
-  },[stateReset])
+    service.getEntries()
+      .then(e => {
+        setEntries(e)
+      })
+  }, [stateReset])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     service.getCoinObject(coinType)
       .then(coinObject => {
-        console.log('coin type in handleSubmit',coinType)
-        const amountAdded = coinObject.value * count 
-        console.log('amountAdded',amountAdded)
-        service.updateTotal(total,amountAdded,coinType)
+        const amountAdded = coinObject.value * count
+        service.updateTotal(total, amountAdded, coinType)
           .then(() => {
-            console.log('updated')
-              const newEntry = {
-                    "dateAdded": new Date(),
-                    "coin": coinType,
-                    "amountAdded": amountAdded
-                  }
-              service.addEntry(newEntry)
-              setCoinType('')
-              setCount(0)
-              const newStateReset = !stateReset 
-              setStateReset(newStateReset)
-        })
-    })
+            const newEntry = {
+              "dateAdded": new Date(),
+              "coin": coinType,
+              "amountAdded": amountAdded
+            }
+            service.addEntry(newEntry)
+            setCoinType('')
+            setCount(0)
+            const newStateReset = !stateReset
+            setStateReset(newStateReset)
+          })
+      })
   }
 
-return (
-  <>
-    <h2>Totals</h2>
-    <div>Grand total: {total ? (total.toString().length > 4 ? total.toFixed(2) : total) : `error`}</div>
-    <div id='quarters'>Quarters: {quarters ? (quarters.toString().length > 4 ? quarters.toFixed(2) : quarters) : `error`}</div>
-    <div id='dimes'>Dimes: {dimes ? (dimes.toString().length > 4 ? dimes.toFixed(2) : dimes) : `error`}</div>
-    <div id='nickels'>Nickels: {nickels ? (nickels.toString().length > 4 ? nickels.toFixed(2) : nickels) : `error`}</div>
-    <div id='pennies'>Pennies: {pennies ? (pennies.toString().length > 4 ? pennies.toFixed(2) : pennies) : `error`}</div>
-    <h2>Add some coins</h2>
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>coin type</label>{" "}
-        <select type="option" value={coinType} onChange={(e) => setCoinType(e.target.value)}>
-          <option value="quarter">quarter</option>
-          <option value="dime">dime</option>
-          <option value="nickel">nickel</option>
-          <option value="penny">penny</option>
-        </select>
-      </div>
-      <div>
-      <label>number of coins</label>{" "}
-      <input type="number" value={count} onChange={(e) => setCount(e.target.value)}/>
-      </div>
-      <button type="submit">add</button>
-    </form>
-    <h2>Entries</h2>
-    <Entries entries={entries}/>
-  </>
-)
+  return (
+    <>
+      <h2>Totals</h2>
+      <Total entries={entries} />
+      <div id='quarters'>Quarters: {utils.setAmountToFixed(quarters)}</div>
+      <div id='dimes'>Dimes: {utils.setAmountToFixed(dimes)}</div>
+      <div id='nickels'>Nickels: {utils.setAmountToFixed(nickels)}</div>
+      <div id='pennies'>Pennies: {utils.setAmountToFixed(pennies)}</div>
+      <h2>Add some coins</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>coin type</label>{" "}
+          <select type="option" value={coinType} onChange={(e) => setCoinType(e.target.value)}>
+            <option value="quarter">quarter</option>
+            <option value="dime">dime</option>
+            <option value="nickel">nickel</option>
+            <option value="penny">penny</option>
+          </select>
+        </div>
+        <div>
+          <label>number of coins</label>{" "}
+          <input type="number" value={count} onChange={(e) => setCount(e.target.value)} />
+        </div>
+        <button type="submit">add</button>
+      </form>
+      <h2>Entries</h2>
+      <Entries entries={entries} />
+    </>
+  )
 }
 
 export default App
