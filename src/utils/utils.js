@@ -4,8 +4,6 @@ function setAmountToFixed(coinType) {
 
 function formatDate(dateString) {
   const dateStringAsDate = new Date(dateString)
-  console.log('dateStringAsDate', dateStringAsDate)
-  console.log(typeof dateStringAsDate)
   const year = dateStringAsDate.getFullYear()
   const month = dateStringAsDate.getMonth() + 1
   const day = dateStringAsDate.getDate()
