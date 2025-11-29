@@ -1,80 +1,47 @@
 import { useState, useEffect } from 'react'
 import service from './services'
-import Entries from './Entries'
+import { compareDates } from './utils/utils.js'
 import './styles.css'
-import Total from './Total'
-import utils from './utils/utils.js'
+import Entries from './components/Entries'
+import Total from './components/Total'
+import CoinDisplay from './components/CoinDisplay.jsx'
+import NewEntryForm from './components/NewEntryForm.jsx'
+import Notification from './components/Notification.jsx'
 
 function App() {
-  const [coinType, setCoinType] = useState('quarter')
-  const [count, setCount] = useState(0)
-  const [stateReset, setStateReset] = useState(true)
-  const [quarters, setQuarters] = useState(0)
-  const [nickels, setNickels] = useState(0)
-  const [dimes, setDimes] = useState(0)
-  const [pennies, setPennies] = useState(0)
   const [entries, setEntries] = useState([])
+  const [refetchEntries, setRefetchEntries] = useState(false)
+  const [notificationMessage, setNotificationMessage] = useState('')
 
   useEffect(() => {
-    service.getAllCoins()
-      .then(coinObject => {
-        setQuarters(coinObject[0].total)
-        setDimes(coinObject[1].total)
-        setNickels(coinObject[2].total)
-        setPennies(coinObject[3].total)
-      })
     service.getEntries()
       .then(e => {
-        setEntries(e)
+        const sortedEntries = e.sort((a, b) => compareDates(a.dateAdded, b.dateAdded))
+        setEntries(sortedEntries)
       })
-  }, [stateReset])
+  }, [refetchEntries])
 
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-    service.getCoinObject(coinType)
-      .then(coinObject => {
-        const amountAdded = coinObject.value * count
-        service.updateTotal(total, amountAdded, coinType)
-          .then(() => {
-            const newEntry = {
-              "dateAdded": new Date(),
-              "coin": coinType,
-              "amountAdded": amountAdded
-            }
-            service.addEntry(newEntry)
-            setCoinType('')
-            setCount(0)
-            const newStateReset = !stateReset
-            setStateReset(newStateReset)
-          })
-      })
+  function signalReset() {
+    setRefetchEntries(!refetchEntries)
   }
 
+  if (entries.length === 0) {
+    return <div>No data</div>
+  }
+  console.log('notificationMessage', notificationMessage)
   return (
     <>
+      {notificationMessage.length > 0 ? <Notification
+        notificationMessage={notificationMessage}
+        setNotificationMessage={setNotificationMessage} /> : null}
       <h2>Totals</h2>
       <Total entries={entries} />
-      <div id='quarters'>Quarters: {utils.setAmountToFixed(quarters)}</div>
-      <div id='dimes'>Dimes: {utils.setAmountToFixed(dimes)}</div>
-      <div id='nickels'>Nickels: {utils.setAmountToFixed(nickels)}</div>
-      <div id='pennies'>Pennies: {utils.setAmountToFixed(pennies)}</div>
+      <CoinDisplay />
       <h2>Add some coins</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>coin type</label>{" "}
-          <select type="option" value={coinType} onChange={(e) => setCoinType(e.target.value)}>
-            <option value="quarter">quarter</option>
-            <option value="dime">dime</option>
-            <option value="nickel">nickel</option>
-            <option value="penny">penny</option>
-          </select>
-        </div>
-        <div>
-          <label>number of coins</label>{" "}
-          <input type="number" value={count} onChange={(e) => setCount(e.target.value)} />
-        </div>
-        <button type="submit">add</button>
-      </form>
+      <NewEntryForm
+        signalReset={signalReset}
+        setNotificationMessage={setNotificationMessage}
+      />
       <h2>Entries</h2>
       <Entries entries={entries} />
     </>

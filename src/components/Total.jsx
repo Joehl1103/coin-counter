@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import utils from './utils/utils.js'
+import utils from '../utils/utils.js'
 
 function Total({ entries }) {
   function calculateTotal(entries) {

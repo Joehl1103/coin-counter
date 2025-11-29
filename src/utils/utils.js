@@ -10,7 +10,18 @@ function formatDate(dateString) {
   return `${year}-${month}-${day}`
 }
 
+export function compareDates(a, b) {
+  if (a < b) {
+    return 1
+  }
+  if (a > b) {
+    return -1
+  }
+  return 0
+}
+
 export default {
   setAmountToFixed,
-  formatDate
+  formatDate,
+  compareDates
 }

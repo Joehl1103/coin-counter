@@ -44,7 +44,11 @@ const getCoinValue = async (type) => {
 }
 
 const addEntry = async (entry) => {
-  await axios.post(`${baseUrl}/entries`, entry)
+  try {
+    await axios.post(`${baseUrl}/entries`, entry)
+  } catch (error) {
+    throw new Error(`Error: ${e.message}`)
+  }
 }
 
 const getEntries = async () => {

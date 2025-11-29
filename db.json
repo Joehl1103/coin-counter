@@ -93,12 +93,6 @@
       "dateAdded": "2025-11-25T03:22:18.944Z",
       "coin": "penny",
       "amountAdded": 0.02
-    },
-    {
-      "id": "87d0",
-      "dateAdded": "2025-11-25T03:22:36.754Z",
-      "coin": "dime",
-      "amountAdded": 0.2
     }
   ]
 }
