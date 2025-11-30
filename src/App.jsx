@@ -2,10 +2,7 @@ import { useState, useEffect } from 'react'
 import service from './services'
 import { compareDates } from './utils/utils.js'
 import Header from './Header.jsx'
-import Entries from './components/entries/Entries'
-import Totals from './components/totals/Totals.jsx'
-import NewEntryForm from './components/NewEntryForm.jsx'
-import Notification from './components/Notification.jsx'
+import Body from './Body.jsx'
 import Footer from './Footer.jsx'
 import './styles/index.css'
 import './styles/variables.css'
@@ -34,15 +31,13 @@ function App() {
     <div className="mainDiv">
       <Header />
       <hr />
-      {notificationMessage.length > 0 ? <Notification
+      <Body
         notificationMessage={notificationMessage}
-        setNotificationMessage={setNotificationMessage} /> : null}
-      <Totals entries={entries} />
-      <NewEntryForm
-        signalReset={signalReset}
         setNotificationMessage={setNotificationMessage}
+        entries={entries}
+        signalReset={signalReset}
       />
-      <Entries entries={entries} />
+
       <Footer />
     </div>
   )
