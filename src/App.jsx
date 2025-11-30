@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import service from './services'
 import { compareDates } from './utils/utils.js'
-import './styles.css'
 import Entries from './components/entries/Entries'
 import Total from './components/Total'
 import CoinDisplay from './components/CoinDisplay.jsx'
@@ -30,19 +29,18 @@ function App() {
   }
   return (
     <>
+      <h1 style={{ textAlign: 'center' }}>Coin-Counter</h1>
       {notificationMessage.length > 0 ? <Notification
         notificationMessage={notificationMessage}
         setNotificationMessage={setNotificationMessage} /> : null}
-      <h2>Totals</h2>
       <Total entries={entries} />
       <CoinDisplay />
-      <h2>Add some coins</h2>
       <NewEntryForm
         signalReset={signalReset}
         setNotificationMessage={setNotificationMessage}
       />
-      <h2>Entries</h2>
       <Entries entries={entries} />
+      <p>Built in 2025 by J. Loomis</p>
     </>
   )
 }

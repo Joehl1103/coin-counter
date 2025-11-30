@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 function TableFilter({ setOption, setFilterDate }) {
   const [tempDate, setTempDate] = useState('')
-  console.log('tempDate', tempDate)
 
   function handleSettingOption(event) {
     event.preventDefault()

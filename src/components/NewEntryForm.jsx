@@ -43,6 +43,7 @@ function NewEntryForm({ signalReset, setNotificationMessage }) {
 
   return (
     <div>
+      <h2>Add some coins</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>coin type</label>{" "}
