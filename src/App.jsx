@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import service from './services'
 import { compareDates } from './utils/utils.js'
 import Entries from './components/entries/Entries'
-import Total from './components/totals/Total.jsx'
+import Totals from './components/totals/Totals.jsx'
 import NewEntryForm from './components/NewEntryForm.jsx'
 import Notification from './components/Notification.jsx'
 
@@ -32,7 +32,7 @@ function App() {
       {notificationMessage.length > 0 ? <Notification
         notificationMessage={notificationMessage}
         setNotificationMessage={setNotificationMessage} /> : null}
-      <Total entries={entries} />
+      <Totals entries={entries} />
       <NewEntryForm
         signalReset={signalReset}
         setNotificationMessage={setNotificationMessage}
