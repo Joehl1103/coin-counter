@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react'
 import service from './services'
 import { compareDates } from './utils/utils.js'
 import Entries from './components/entries/Entries'
-import Total from './components/Total.jsx'
-import CoinDisplay from './components/CoinDisplay.jsx'
+import Total from './components/totals/Total.jsx'
 import NewEntryForm from './components/NewEntryForm.jsx'
 import Notification from './components/Notification.jsx'
 
@@ -34,7 +33,6 @@ function App() {
         notificationMessage={notificationMessage}
         setNotificationMessage={setNotificationMessage} /> : null}
       <Total entries={entries} />
-      <CoinDisplay />
       <NewEntryForm
         signalReset={signalReset}
         setNotificationMessage={setNotificationMessage}
