@@ -1,6 +1,6 @@
 import utils from '../../utils/utils.js'
 import { useState, useEffect } from 'react'
-import { Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material'
+import { Table, TableHead, TableBody, TableRow, TableCell, GlobalStyles } from '@mui/material'
 import TableFilter from './TableFilter.jsx'
 import { filterTableEntries } from './Entries.helpers.js'
 import * as styles from './Entries.styles.js'
@@ -50,6 +50,7 @@ const Entries = ({ entries }) => {
           setOption={setOption}
           setFilterDate={setFilterDate}
         />
+        <GlobalStyles styles={{ fontFamily: "var(--font-main)" }} />
         <Table>
           <TableHead>
             <TableRow >
