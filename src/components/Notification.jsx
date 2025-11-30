@@ -1,5 +1,4 @@
 function Notification({ notificationMessage, setNotificationMessage }) {
-  console.log('message', notificationMessage)
   const styleObject = {
     border: "solid",
     padding: 5,
@@ -14,7 +13,7 @@ function Notification({ notificationMessage, setNotificationMessage }) {
   }
   return (
     <div style={styleObject}>
-      <p>{returnErrorAndDismiss()}</p>
+      {returnErrorAndDismiss()}
     </div>
   )
 }

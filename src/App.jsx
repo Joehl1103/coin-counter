@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import service from './services'
 import { compareDates } from './utils/utils.js'
 import './styles.css'
-import Entries from './components/Entries'
+import Entries from './components/entries/Entries'
 import Total from './components/Total'
 import CoinDisplay from './components/CoinDisplay.jsx'
 import NewEntryForm from './components/NewEntryForm.jsx'
@@ -28,7 +28,6 @@ function App() {
   if (entries.length === 0) {
     return <div>No data</div>
   }
-  console.log('notificationMessage', notificationMessage)
   return (
     <>
       {notificationMessage.length > 0 ? <Notification

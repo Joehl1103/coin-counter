@@ -7,7 +7,6 @@ function NewEntryForm({ signalReset, setNotificationMessage }) {
   const handleSubmit = async (event) => {
     event.preventDefault()
     if (!count || count === 0) {
-      console.log('here')
       setNotificationMessage('Number of coins should be greater than 0.')
       return
     }
@@ -32,7 +31,6 @@ function NewEntryForm({ signalReset, setNotificationMessage }) {
             signalReset()
           })
           .catch(error => {
-            console.log(`here with error: ${error.message}`)
             setNotificationMessage(error.message)
             return
           })

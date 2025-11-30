@@ -1,43 +1,50 @@
-import utils from '../utils/utils.js'
+import utils from '../../utils/utils.js'
 import { useState, useEffect } from 'react'
 import { Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material'
-import TableFilter from './TableFilter.jsx'
+import TableFilter from '../TableFilter.jsx'
+import { filterTableEntries } from './entriesHelpers.js'
 
 const Entries = ({ entries }) => {
   const [option, setOption] = useState('all')
+  const [filterDate, setFilterDate] = useState('')
   const [filteredEntries, setFilteredEntries] = useState([])
-  useEffect(() => {
-    if (option === 'all') {
-      setFilteredEntries(entries)
-    } else {
-      const optionAsNumber = Number(option)
-      setFilteredEntries(entries.slice(0, optionAsNumber))
-    }
-  }, [entries, filteredEntries])
 
-  function handleSettingOption(event) {
-    event.preventDefault()
-    setOption(event.target.value)
-  }
+  useEffect(() => {
+    const filteredEntries = filterTableEntries(entries, option, filterDate)
+    setFilteredEntries(filteredEntries)
+  }, [option, filterDate])
+
+
   if (filteredEntries.length === 0) {
     return <div>No entries...</div>
   }
+
+  const headerStyle = {
+    fontWeight: "bold"
+  }
+  let index = 0
+
   return (
     <div>
       <TableFilter
-        handleSettingOption={handleSettingOption} />
+        setOption={setOption}
+        setFilterDate={setFilterDate}
+      />
       <Table>
         <TableHead>
-          <TableRow>
-            <TableCell>Date added</TableCell>
-            <TableCell>Coin Type</TableCell>
-            <TableCell>Type</TableCell>
+          <TableRow >
+            <TableCell style={headerStyle}>#</TableCell>
+            <TableCell style={headerStyle}>Date added</TableCell>
+            <TableCell style={headerStyle}>Coin Type</TableCell>
+            <TableCell style={headerStyle}>Type</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {filteredEntries.map(e => {
+            index++
             return (
               <TableRow key={e.id}>
+                <TableCell>{index}</TableCell>
                 <TableCell>{utils.formatDate(e.dateAdded)}</TableCell>
                 <TableCell>{e.coin}</TableCell>
                 <TableCell>{utils.setAmountToFixed(e.amountAdded)}</TableCell>
@@ -47,7 +54,7 @@ const Entries = ({ entries }) => {
 
         </TableBody>
       </Table>
-    </div>
+    </div >
   )
 }
 

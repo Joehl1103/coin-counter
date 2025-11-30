@@ -1,14 +1,44 @@
-function TableFilter({ handleSettingOption }) {
+import { useState } from 'react'
+
+function TableFilter({ setOption, setFilterDate }) {
+  const [tempDate, setTempDate] = useState('')
+  console.log('tempDate', tempDate)
+
+  function handleSettingOption(event) {
+    event.preventDefault()
+    setOption(event.target.value)
+  }
+
+  function submitDate(event) {
+    event.preventDefault()
+    console.log('setting filter date', tempDate)
+    setFilterDate(tempDate)
+  }
+
+  function clear(event) {
+    event.preventDefault()
+    setFilterDate('')
+  }
   return (
     <div>
-      <p>Number of entries:
+      <div>Number of entries:
         <select onChange={(event) => handleSettingOption(event)}>
           <option>all</option>
           <option>100</option>
           <option>50</option>
           <option>10</option>
         </select>
-      </p>
+      </div>
+      <div>
+        <form onSubmit={(event) => submitDate(event)}>
+          <label>Filter by date:</label>
+          <input
+            onChange={(event) => setTempDate(event.target.value)}
+            type="date" />
+          <button type="submit">set date</button>
+          <button onClick={(event) => clear(event)}>clear</button>
+        </form>
+      </div>
     </div>
   )
 }
