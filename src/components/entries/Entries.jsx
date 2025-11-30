@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material'
 import TableFilter from '../TableFilter.jsx'
 import { filterTableEntries } from './entriesHelpers.js'
+import * as styles from './Entries.styles.js'
 
 const Entries = ({ entries }) => {
   const [option, setOption] = useState('all')
@@ -17,10 +18,6 @@ const Entries = ({ entries }) => {
 
   if (filteredEntries.length === 0) {
     return <div>No entries...</div>
-  }
-
-  const headerStyle = {
-    fontWeight: "bold"
   }
 
   function setDisplay() {
@@ -39,7 +36,6 @@ const Entries = ({ entries }) => {
   //
   return (
     <div >
-
       <div style={{ display: 'flex', flexDirection: 'row' }}>
         <h2>Entries</h2>
         <button
@@ -57,10 +53,10 @@ const Entries = ({ entries }) => {
         <Table>
           <TableHead>
             <TableRow >
-              <TableCell style={headerStyle}>#</TableCell>
-              <TableCell style={headerStyle}>Date added</TableCell>
-              <TableCell style={headerStyle}>Coin Type</TableCell>
-              <TableCell style={headerStyle}>Type</TableCell>
+              <TableCell style={styles.headerStyle}>#</TableCell>
+              <TableCell style={styles.headerStyle}>Date added</TableCell>
+              <TableCell style={styles.headerStyle}>Coin Type</TableCell>
+              <TableCell style={styles.headerStyle}>Type</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
