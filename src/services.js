@@ -32,22 +32,12 @@ const updateTotal = async (total, amountAdded, type) => {
   await axios.put(`${baseUrl}/coin-values/${type}`, newCoinObject)
 }
 
-const getCoinValue = async (type) => {
-  const response = await axios.get(`${baseUrl}/coin-values/`)
-  let value = null
-  response.data.forEach(obj => {
-    if (obj.id === type) {
-      value = obj.value
-    }
-  })
-  return value
-}
 
 const addEntry = async (entry) => {
   try {
     await axios.post(`${baseUrl}/entries`, entry)
   } catch (error) {
-    throw new Error(`Error: ${e.message}`)
+    throw new Error(`Error adding entry: ${error.message}`)
   }
 }
 

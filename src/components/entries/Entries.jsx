@@ -13,7 +13,7 @@ const Entries = ({ entries }) => {
   useEffect(() => {
     const filteredEntries = filterTableEntries(entries, option, filterDate)
     setFilteredEntries(filteredEntries)
-  }, [option, filterDate])
+  }, [entries, option, filterDate])
 
 
   if (filteredEntries.length === 0) {

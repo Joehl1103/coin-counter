@@ -25,7 +25,7 @@ function NewEntryForm({ signalReset, setNotificationMessage }) {
           "amountAdded": amountAdded
         }
         service.addEntry(newEntry)
-          .then(e => {
+          .then(() => {
             setCoinType('')
             setCount(0)
             signalReset()
