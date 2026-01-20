@@ -93,6 +93,36 @@
       "dateAdded": "2025-11-25T03:22:18.944Z",
       "coin": "penny",
       "amountAdded": 0.02
+    },
+    {
+      "id": "eafa",
+      "dateAdded": "2026-01-10T18:53:12.193Z",
+      "coin": "dime",
+      "amountAdded": 0.4
+    },
+    {
+      "id": "e806",
+      "dateAdded": "2026-01-10T18:53:48.392Z",
+      "coin": "penny",
+      "amountAdded": 0.01
+    },
+    {
+      "id": "2314",
+      "dateAdded": "2026-01-20T14:26:00.529Z",
+      "coin": "quarter",
+      "amountAdded": 1.25
+    },
+    {
+      "id": "dc60",
+      "dateAdded": "2026-01-20T14:26:46.064Z",
+      "coin": "dime",
+      "amountAdded": 0.2
+    },
+    {
+      "id": "7085",
+      "dateAdded": "2026-01-20T14:26:52.674Z",
+      "coin": "nickel",
+      "amountAdded": 0.05
     }
   ]
 }

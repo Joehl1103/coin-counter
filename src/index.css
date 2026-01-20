@@ -1,0 +1,25 @@
+html, body, #root {
+  background-color: var(--color-primary);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+input, select{
+  background-color: var(--color-inputs);
+}
+
+button {
+ background-color: var(--color-buttons);
+}
+
+h1,h2 {
+}
+
