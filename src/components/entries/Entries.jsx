@@ -1,68 +1,75 @@
-import utils from '../../utils/utils.js'
-import { useState, useEffect } from 'react'
-import { Table, TableHead, TableBody, TableRow, TableCell, GlobalStyles } from '@mui/material'
-import TableFilter from './TableFilter.jsx'
-import { filterTableEntries } from './Entries.helpers.js'
-import * as styles from './Entries.styles.js'
+import utils from "../../utils/utils.js";
+import { useState, useEffect } from "react";
+import {
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  GlobalStyles,
+} from "@mui/material";
+import TableFilter from "./TableFilter.jsx";
+import { filterTableEntries } from "./Entries.helpers.js";
+import * as styles from "./Entries.styles.js";
 
 const Entries = ({ entries }) => {
-  const [option, setOption] = useState('all')
-  const [filterDate, setFilterDate] = useState('')
-  const [filteredEntries, setFilteredEntries] = useState([])
-  const [displayConst, setDisplayConst] = useState('contents')
+  const [option, setOption] = useState("all");
+  const [filterDate, setFilterDate] = useState("");
+  const [filteredEntries, setFilteredEntries] = useState([]);
+  const [displayConst, setDisplayConst] = useState("contents");
   useEffect(() => {
-    const filteredEntries = filterTableEntries(entries, option, filterDate)
-    setFilteredEntries(filteredEntries)
-  }, [entries, option, filterDate])
-
+    const filteredEntries = filterTableEntries(entries, option, filterDate);
+    setFilteredEntries(filteredEntries);
+  }, [entries, option, filterDate]);
 
   if (filteredEntries.length === 0) {
-    return <div>No entries...</div>
+    return <div>No entries...</div>;
   }
 
   function setDisplay() {
-    if (displayConst === 'contents') {
-      setDisplayConst('none')
-      return
+    if (displayConst === "contents") {
+      setDisplayConst("none");
+      return;
     }
-    setDisplayConst('contents')
-    return
+    setDisplayConst("contents");
+    return;
   }
-  let index = 0
+  let index = 0;
 
   // const showHideButton = document.getElementById('showHideButton')
   // showHideButton.onMouseOver(() => {
   // })
   //
   return (
-    <div >
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
+    <div>
+      <div style={{ display: "flex", flexDirection: "row" }}>
         <h2>Entries</h2>
         <button
-          id='showHideButton'
+          id="showHideButton"
           onClick={setDisplay}
           style={{ marginLeft: 5, marginTop: 24, height: 20 }}
-        >{displayConst === 'contents' ? 'hide' : 'show'}</button>
-        <p style={{ marginTop: 29, marginLeft: 5 }}><i>List of coin entries submitted by the user, by coin-type.</i></p>
+        >
+          {displayConst === "contents" ? "hide" : "show"}
+        </button>
+        <p style={{ marginTop: 29, marginLeft: 5 }}>
+          <i>List of coin entries submitted by the user, by coin-type.</i>
+        </p>
       </div>
       <div style={{ display: displayConst }}>
-        <TableFilter
-          setOption={setOption}
-          setFilterDate={setFilterDate}
-        />
+        <TableFilter setOption={setOption} setFilterDate={setFilterDate} />
         <GlobalStyles styles={{ fontFamily: "var(--font-main)" }} />
         <Table>
           <TableHead>
-            <TableRow >
+            <TableRow>
               <TableCell style={styles.headerStyle}>#</TableCell>
               <TableCell style={styles.headerStyle}>Date added</TableCell>
               <TableCell style={styles.headerStyle}>Coin Type</TableCell>
-              <TableCell style={styles.headerStyle}>Type</TableCell>
+              <TableCell style={styles.headerStyle}>Amount</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredEntries.map(e => {
-              index++
+            {filteredEntries.map((e) => {
+              index++;
               return (
                 <TableRow key={e.id}>
                   <TableCell>{index}</TableCell>
@@ -70,14 +77,13 @@ const Entries = ({ entries }) => {
                   <TableCell>{e.coin}</TableCell>
                   <TableCell>{utils.setAmountToFixed(e.amountAdded)}</TableCell>
                 </TableRow>
-              )
+              );
             })}
-
           </TableBody>
         </Table>
-      </div >
-    </div >
-  )
-}
+      </div>
+    </div>
+  );
+};
 
-export default Entries
+export default Entries;
