@@ -1,55 +1,28 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:3000";
+const baseUrl = "http://localhost:3000/entries";
 
-export const getEntries = async () => {
-  const response = await axios.get(`${baseUrl}/entries`);
+const getEntries = async () => {
+  const response = await axios.get(baseUrl);
   return response.data;
-};
-
-const getTotal = async () => {
-  const response = await axios.get(`${baseUrl}/total`);
-  const total = response.data[0].value;
-  return total;
-};
-
-const getCoinObject = async (type) => {
-  const response = await axios.get(`${baseUrl}/coin-values/${type}`);
-  return response.data;
-};
-
-const getAllCoins = async () => {
-  const response = await axios.get(`${baseUrl}/coin-values/`);
-  return response.data;
-};
-
-const updateTotal = async (total, amountAdded, type) => {
-  const newTotalObject = {
-    id: 1,
-    value: total + amountAdded,
-  };
-  await axios.put(`${baseUrl}/total/grand`, newTotalObject);
-  const coinTypeObject = await getCoinObject(type);
-  const newCoinObject = {
-    ...coinTypeObject,
-    total: coinTypeObject.total + amountAdded,
-  };
-  await axios.put(`${baseUrl}/coin-values/${type}`, newCoinObject);
 };
 
 const addEntry = async (entry) => {
-  try {
-    await axios.post(`${baseUrl}/entries`, entry);
-  } catch (error) {
-    throw new Error(`Error adding entry: ${error.message}`);
-  }
+  await axios.post(baseUrl, entry);
+};
+
+const getEntryById = async (id) => {
+  const response = await axios.get(baseUrl);
+  return response.data.filter((e) => e.id === id);
+};
+
+const deleteEntry = async (id) => {
+  const response = await axios.delete(`${baseUrl}/${id}`);
 };
 
 export default {
-  getTotal,
-  updateTotal,
-  getAllCoins,
-  getCoinObject,
-  addEntry,
   getEntries,
+  getEntryById,
+  addEntry,
+  deleteEntry,
 };

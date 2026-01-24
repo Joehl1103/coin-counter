@@ -3,21 +3,39 @@ import { useState, useEffect } from "react";
 import utils from "../../utils/utils.js";
 import * as styles from "./CoinDisplay.styles.js";
 
-function CoinDisplay() {
-  const [quarters, setQuarters] = useState(0);
-  const [nickels, setNickels] = useState(0);
-  const [dimes, setDimes] = useState(0);
-  const [pennies, setPennies] = useState(0);
+function CoinDisplay({ entries }) {
+  const [quarters, setQuarters] = useState([]);
+  const [nickels, setNickels] = useState([]);
+  const [dimes, setDimes] = useState([]);
+  const [pennies, setPennies] = useState([]);
+  const [n_a, setN_A] = useState([]);
+
+  const COIN_NAMES = {
+    PENNY: "penny",
+    DIME: "dime",
+    NICKEL: "nickel",
+    QUARTER: "quarter",
+    N_A: "n/a",
+  };
 
   useEffect(() => {
-    service.getAllCoins().then((coinObject) => {
-      console.log("coinObject", coinObject);
-      setQuarters(coinObject[0].total);
-      setDimes(coinObject[1].total);
-      setNickels(coinObject[2].total);
-      setPennies(coinObject[3].total);
+    service.getEntries().then((entries) => {
+      setQuarters(entries.filter((e) => e.coin === COIN_NAMES.QUARTER));
+      setDimes(entries.filter((e) => e.coin === COIN_NAMES.DIME));
+      setNickels(entries.filter((e) => e.coin === COIN_NAMES.NICKEL));
+      setPennies(entries.filter((e) => e.coin === COIN_NAMES.PENNY));
+      setN_A(entries.filter((e) => e.coin === COIN_NAMES.N_A));
     });
-  }, []);
+  }, [entries]);
+
+  function calcTotal(coinArray) {
+    if (coinArray.length === 0) {
+      return 0;
+    }
+    return coinArray.reduce((acc, current) => {
+      return acc + current.amountAdded;
+    }, 0);
+  }
 
   return (
     <div
@@ -30,19 +48,23 @@ function CoinDisplay() {
     >
       <div id="quarters" style={styles.coinDisplayStyle}>
         <p style={styles.returnIcon("greenyellow")}></p>
-        <p>Quarters: ${utils.setAmountToFixed(quarters)}</p>
+        <p>Quarters: ${utils.setAmountToFixed(calcTotal(quarters))}</p>
       </div>
       <div id="dimes" style={styles.coinDisplayStyle}>
         <p style={styles.returnIcon("rgb(255, 0, 251)")}></p>
-        <p>Dimes: ${utils.setAmountToFixed(dimes)}</p>
+        <p>Dimes: ${utils.setAmountToFixed(calcTotal(dimes))}</p>
       </div>
       <div id="nickels" style={styles.coinDisplayStyle}>
         <p style={styles.returnIcon("yellow")}></p>
-        <p>Nickels: ${utils.setAmountToFixed(nickels)}</p>
+        <p>Nickels: ${utils.setAmountToFixed(calcTotal(nickels))}</p>
       </div>
       <div id="pennies" style={styles.coinDisplayStyle}>
         <p style={styles.returnIcon("rgb(175, 0, 175)")}></p>
-        <p>Pennies: ${utils.setAmountToFixed(pennies)}</p>
+        <p>Pennies: ${utils.setAmountToFixed(calcTotal(pennies))}</p>
+      </div>
+      <div id="n_a" style={styles.coinDisplayStyle}>
+        <p style={styles.returnIcon("rgb(213,213,213")}></p>
+        <p>unknown: ${utils.setAmountToFixed(calcTotal(n_a))}</p>
       </div>
     </div>
   );

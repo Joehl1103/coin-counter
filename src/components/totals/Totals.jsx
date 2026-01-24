@@ -1,14 +1,14 @@
-import CoinDisplay from './CoinDisplay.jsx'
-import Total from './Total.jsx'
+import CoinDisplay from "./CoinDisplay.jsx";
+import Total from "./Total.jsx";
 
 function Totals({ entries }) {
   return (
     <>
       <h2>Totals</h2>
       <Total entries={entries} />
-      <CoinDisplay />
+      <CoinDisplay entries={entries} />
     </>
-  )
+  );
 }
 
-export default Totals
+export default Totals;
