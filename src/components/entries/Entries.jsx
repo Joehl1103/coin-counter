@@ -17,7 +17,7 @@ const Entries = ({ entries, setEntries, handleNotification }) => {
   const [option, setOption] = useState("all");
   const [filterDate, setFilterDate] = useState("");
   const [filteredEntries, setFilteredEntries] = useState([]);
-  const [displayConst, setDisplayConst] = useState("contents");
+  const [displayConst, setDisplayConst] = useState("none");
   useEffect(() => {
     const filteredEntries = filterTableEntries(entries, option, filterDate);
     setFilteredEntries(filteredEntries);
