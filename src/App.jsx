@@ -10,7 +10,6 @@ import "./styles/variables.css";
 function App() {
   const [entries, setEntries] = useState([]);
   const [refetchEntries, setRefetchEntries] = useState(false);
-  const [notificationMessage, setNotificationMessage] = useState("");
 
   useEffect(() => {
     service.getEntries().then((e) => {
@@ -33,8 +32,6 @@ function App() {
       <Header />
       <hr />
       <Body
-        notificationMessage={notificationMessage}
-        setNotificationMessage={setNotificationMessage}
         entries={entries}
         setEntries={setEntries}
         signalReset={signalReset}

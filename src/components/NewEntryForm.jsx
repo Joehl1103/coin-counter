@@ -27,19 +27,20 @@ function getCoinValue(coinType) {
   }
 }
 
-function NewEntryForm({ signalReset, setNotificationMessage }) {
+function NewEntryForm({ signalReset, handleNotification }) {
   const [coinType, setCoinType] = useState("quarter");
   const [count, setCount] = useState(0);
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!count || count === 0) {
-      setNotificationMessage("Number of coins should be greater than 0.");
+      handleNotification("Number of coins should be greater than 0.", false);
       return;
     }
     const amountAdded = getCoinValue(coinType) * count;
     if (!amountAdded || isNaN(amountAdded)) {
-      throw new Error(
+      handleNotification(
         `Something is wrong with the amountAdded: ${amountAdded}.`,
+        false,
       );
     }
     const newEntry = {
@@ -53,9 +54,10 @@ function NewEntryForm({ signalReset, setNotificationMessage }) {
         setCoinType("");
         setCount(0);
         signalReset();
+        handleNotification("Added new entry", true);
       })
       .catch((error) => {
-        setNotificationMessage(error.message);
+        handleNotification(error.message, false);
         return;
       });
   };

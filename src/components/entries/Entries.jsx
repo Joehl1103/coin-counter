@@ -13,7 +13,7 @@ import { filterTableEntries } from "./Entries.helpers.js";
 import * as styles from "./Entries.styles.js";
 import service from "./../../services.js";
 
-const Entries = ({ entries, setEntries }) => {
+const Entries = ({ entries, setEntries, handleNotification }) => {
   const [option, setOption] = useState("all");
   const [filterDate, setFilterDate] = useState("");
   const [filteredEntries, setFilteredEntries] = useState([]);
@@ -42,6 +42,7 @@ const Entries = ({ entries, setEntries }) => {
       service.deleteEntry(id);
       const newEntries = entries.filter((e) => e.id !== id);
       setEntries(newEntries);
+      handleNotification("Deleted entry", true);
     }
   }
 
