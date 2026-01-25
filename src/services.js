@@ -8,6 +8,7 @@ const getEntries = async () => {
 };
 
 const addEntry = async (entry) => {
+  console.log("adding entry", entry);
   await axios.post(baseUrl, entry);
 };
 
