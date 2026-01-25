@@ -1,7 +1,8 @@
-html, body, #root {
+html,
+#root {
   background-color: var(--color-primary);
-  margin: 0;
-  padding: 0;
+  margin: 10;
+  padding: 10;
   height: 100%;
   width: 100%;
 }
@@ -12,14 +13,11 @@ html, body, #root {
   min-height: 100%;
 }
 
-input, select{
+input,
+select {
   background-color: var(--color-inputs);
 }
 
 button {
- background-color: var(--color-buttons);
+  background-color: var(--color-buttons);
 }
-
-h1,h2 {
-}
-

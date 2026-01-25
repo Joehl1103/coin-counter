@@ -48,19 +48,22 @@ const Entries = ({ entries, setEntries, handleNotification }) => {
 
   return (
     <div>
-      <div style={{ display: "flex", flexDirection: "row" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 5,
+        }}
+      >
         <h2>Entries</h2>
-        <button
-          id="showHideButton"
-          onClick={setDisplay}
-          style={{ marginLeft: 5, marginTop: 24, height: 20 }}
-        >
+        <button id="showHideButton" onClick={setDisplay}>
           {displayConst === "contents" ? "hide" : "show"}
         </button>
-        <p style={{ marginTop: 29, marginLeft: 5 }}>
-          <i>List of coin entries submitted by the user, by coin-type.</i>
-        </p>
       </div>
+      <p style={{ marginTop: 0 }}>
+        <i>List of coin entries submitted by the user, by coin-type.</i>
+      </p>
       <div style={{ display: displayConst }}>
         <TableFilter setOption={setOption} setFilterDate={setFilterDate} />
         <GlobalStyles styles={{ fontFamily: "var(--font-main)" }} />

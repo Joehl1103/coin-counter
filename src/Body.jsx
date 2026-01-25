@@ -24,7 +24,7 @@ function Body(props) {
   };
 
   return (
-    <div>
+    <div style={{ padding: "20px" }}>
       {notificationMessage.length > 0 ? (
         <div style={notificationDivStyle}>
           <Notification
