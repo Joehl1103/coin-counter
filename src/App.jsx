@@ -30,7 +30,6 @@ function App() {
   return (
     <div className="mainDiv">
       <Header />
-      <hr />
       <Body
         entries={entries}
         setEntries={setEntries}
