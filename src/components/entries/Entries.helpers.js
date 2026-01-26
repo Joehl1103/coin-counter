@@ -1,9 +1,10 @@
 function checkForFilterDate(entries, filterDate) {
   if (filterDate.length > 0) {
     return entries.filter((e) => {
-      const dateOnly = new Intl.DateTimeFormat("en-CA", {
-        timeZone: "UTC",
-      }).format(new Date(e.dateAdded));
+      const dateOnly = e.dateAdded.substring(0, 10);
+      if (dateOnly === filterDate) {
+        console.log(e);
+      }
       return dateOnly === filterDate;
     });
   }

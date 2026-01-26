@@ -2,7 +2,7 @@
   "entries": [
     {
       "id": "startingAmount",
-      "dateAdded": "2025-08-30",
+      "dateAdded": "2025-08-30T00:00:00.000Z",
       "coin": "n/a",
       "amountAdded": 15.28
     },
@@ -104,3 +104,4 @@
     }
   ]
 }
+

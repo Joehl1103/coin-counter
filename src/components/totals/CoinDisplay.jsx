@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import utils from "../../utils/utils.js";
+import utils from "../../utils.js";
 import * as styles from "./CoinDisplay.styles.js";
 
 const COIN_NAMES = {
@@ -11,13 +11,16 @@ const COIN_NAMES = {
 };
 
 function CoinDisplay({ entries }) {
-  const { quarters, dimes, nickels, pennies, n_a } = useMemo(() => ({
-    quarters: entries.filter((e) => e.coin === COIN_NAMES.QUARTER),
-    dimes: entries.filter((e) => e.coin === COIN_NAMES.DIME),
-    nickels: entries.filter((e) => e.coin === COIN_NAMES.NICKEL),
-    pennies: entries.filter((e) => e.coin === COIN_NAMES.PENNY),
-    n_a: entries.filter((e) => e.coin === COIN_NAMES.N_A),
-  }), [entries]);
+  const { quarters, dimes, nickels, pennies, n_a } = useMemo(
+    () => ({
+      quarters: entries.filter((e) => e.coin === COIN_NAMES.QUARTER),
+      dimes: entries.filter((e) => e.coin === COIN_NAMES.DIME),
+      nickels: entries.filter((e) => e.coin === COIN_NAMES.NICKEL),
+      pennies: entries.filter((e) => e.coin === COIN_NAMES.PENNY),
+      n_a: entries.filter((e) => e.coin === COIN_NAMES.N_A),
+    }),
+    [entries],
+  );
 
   function calcTotal(coinArray) {
     if (coinArray.length === 0) {

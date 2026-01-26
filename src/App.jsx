@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import service from "./services";
-import { compareDates } from "./utils/utils.js";
+import { compareDates } from "./utils.js";
 import Header from "./Header.jsx";
 import Body from "./Body.jsx";
 import Footer from "./Footer.jsx";

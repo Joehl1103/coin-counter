@@ -30,7 +30,7 @@ const entries = [
 ];
 
 describe("filterTableEntries", () => {
-  it.only("checkForFilteredDate returns entries filtered by Date if date", () => {
+  it("checkForFilteredDate returns entries filtered by Date if date", () => {
     const entriesFilteredByDate = filterTableEntries(
       entries,
       "all",

@@ -1,4 +1,4 @@
-import utils from "../../utils/utils.js";
+import utils from "../../utils.js";
 import { useState, useEffect } from "react";
 import {
   Table,
@@ -83,11 +83,12 @@ const Entries = ({ entries, setEntries, handleNotification }) => {
           </TableHead>
           <TableBody>
             {filteredEntries.map((e) => {
+              console.log(e);
               index++;
               return (
                 <TableRow key={e.id}>
                   <TableCell>{index}</TableCell>
-                  <TableCell>{utils.formatDate(e.dateAdded)}</TableCell>
+                  <TableCell>{e.dateAdded.substring(0, 10)}</TableCell>
                   <TableCell>{e.coin}</TableCell>
                   <TableCell>{utils.setAmountToFixed(e.amountAdded)}</TableCell>
                   <TableCell>
