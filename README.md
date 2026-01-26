@@ -2,6 +2,8 @@
 
 A React application for tracking coin collections and totals, built with Vite and Material-UI.
 
+## Demo
+
 ## Features
 
 - Track coin additions and totals
@@ -41,6 +43,7 @@ A React application for tracking coin collections and totals, built with Vite an
 #### Option 1: Single Command (Recommended)
 
 Run the application with a single command:
+
 ```bash
 npm start
 ```
@@ -50,6 +53,7 @@ This will start both the React development server and the JSON server backend si
 #### Option 2: From Anywhere on Your Computer
 
 If you want to run the app from anywhere on your computer, execute the provided shell script:
+
 ```bash
 ./start-coin-counter.sh
 ```
@@ -67,20 +71,21 @@ npm run server
 ```
 
 The application will be available at:
+
 - Frontend: http://localhost:5173
 - Backend API: http://localhost:3000
 
 ## Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm start` | Start both development server and JSON server concurrently |
-| `npm run dev` | Start the Vite development server only |
-| `npm run server` | Start the JSON server with the coin data only |
-| `npm run build` | Build the application for production |
-| `npm run preview` | Preview the production build locally |
-| `npm run lint` | Run ESLint to check code quality |
-| `npm test` | Run the test suite with Vitest |
+| Command           | Description                                                |
+| ----------------- | ---------------------------------------------------------- |
+| `npm start`       | Start both development server and JSON server concurrently |
+| `npm run dev`     | Start the Vite development server only                     |
+| `npm run server`  | Start the JSON server with the coin data only              |
+| `npm run build`   | Build the application for production                       |
+| `npm run preview` | Preview the production build locally                       |
+| `npm run lint`    | Run ESLint to check code quality                           |
+| `npm test`        | Run the test suite with Vitest                             |
 
 ## Project Structure
 

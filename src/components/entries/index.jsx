@@ -19,13 +19,17 @@ const Entries = ({ entries, setEntries, handleNotification }) => {
   const [filteredEntries, setFilteredEntries] = useState([]);
   const [displayConst, setDisplayConst] = useState("none");
   useEffect(() => {
-    const filteredEntries = filterTableEntries(entries, option, filterDate);
-    setFilteredEntries(filteredEntries);
+    try {
+      const filteredEntries = filterTableEntries(entries, option, filterDate);
+      setFilteredEntries(filteredEntries);
+    } catch (e) {
+      handleNotification(e.message, false);
+    }
   }, [entries, option, filterDate]);
 
-  if (filteredEntries.length === 0) {
-    return <div>No entries...</div>;
-  }
+  // if (filteredEntries.length === 0) {
+  //   return <div>No entries...</div>;
+  // }
 
   function setDisplay() {
     if (displayConst === "contents") {

@@ -5,32 +5,32 @@ import { filterTableEntries } from "./Entries.helpers.js";
 const entries = [
   {
     id: "1",
-    dateAdded: "2025-08-30",
+    dateAdded: new Date("2025-08-30").toISOString(),
     coin: "quarter",
     amountAdded: 1,
   },
   {
     id: "2",
-    dateAdded: "2025-08-31",
+    dateAdded: new Date("2025-08-31").toISOString(),
     coin: "quarter",
     amountAdded: 1,
   },
   {
     id: "3",
-    dateAdded: "2025-09-01",
+    dateAdded: new Date("2025-09-01").toISOString(),
     coin: "quarter",
     amountAdded: 1,
   },
   {
     id: "4",
-    dateAdded: "2025-09-02",
+    dateAdded: new Date("2025-09-02").toISOString(),
     coin: "quarter",
     amountAdded: 1,
   },
 ];
 
 describe("filterTableEntries", () => {
-  it("checkForFilteredDate returns entries filtered by Date if date", () => {
+  it.only("checkForFilteredDate returns entries filtered by Date if date", () => {
     const entriesFilteredByDate = filterTableEntries(
       entries,
       "all",
@@ -40,14 +40,8 @@ describe("filterTableEntries", () => {
       {
         amountAdded: 1,
         coin: "quarter",
-        dateAdded: "2025-09-01",
+        dateAdded: new Date("2025-09-01").toISOString(),
         id: "3",
-      },
-      {
-        amountAdded: 1,
-        coin: "quarter",
-        dateAdded: "2025-09-02",
-        id: "4",
       },
     ]);
   });

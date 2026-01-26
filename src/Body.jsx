@@ -1,6 +1,6 @@
 import Notification from "./components/Notification.jsx";
 import Totals from "./components/totals/Totals.jsx";
-import Entries from "./components/entries/Entries.jsx";
+import Entries from "./components/entries/index.jsx";
 import NewEntryForm from "./components/NewEntryForm.jsx";
 import { useState } from "react";
 

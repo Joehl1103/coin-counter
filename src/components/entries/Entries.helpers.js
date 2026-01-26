@@ -1,19 +1,32 @@
-
 function checkForFilterDate(entries, filterDate) {
   if (filterDate.length > 0) {
-    return entries.filter(e => e.dateAdded >= filterDate)
+    return entries.filter((e) => {
+      const dateOnly = new Intl.DateTimeFormat("en-CA", {
+        timeZone: "UTC",
+      }).format(new Date(e.dateAdded));
+      return dateOnly === filterDate;
+    });
   }
-  return entries
+  return entries;
 }
 
 function checkForOption(entries, option) {
-  if (option !== 'all') {
-    return entries.slice(0, Number(option))
+  if (option === "all") {
+    return entries;
   }
-  return entries
+  const optNum = Number(option);
+  if (isNaN(optNum)) {
+    throw new Error("option is not a number");
+  }
+  if (![100, 50, 10].includes(optNum)) {
+    throw new Error(
+      `option (${option}) is not among the listed options: 100, 50, 10`,
+    );
+  }
+  return entries.slice(0, optNum);
 }
 
 export function filterTableEntries(entries, option, filterDate) {
-  const entriesFilteredByDate = checkForFilterDate(entries, filterDate)
-  return checkForOption(entriesFilteredByDate, option)
+  const entriesFilteredByDate = checkForFilterDate(entries, filterDate);
+  return checkForOption(entriesFilteredByDate, option);
 }
