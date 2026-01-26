@@ -1,14 +1,5 @@
-import {
-  describe,
-  it,
-  expect,
-  beforeEach,
-  beforeAll,
-  afterAll,
-  vi,
-} from "vitest";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 import axios from "axios";
-import request from "supertest";
 import service from "./services.js";
 
 vi.mock("axios");

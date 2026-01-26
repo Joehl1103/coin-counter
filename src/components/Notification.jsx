@@ -17,8 +17,6 @@ function Notification({
     return <button onClick={() => setNotificationMessage("")}>dismiss</button>;
   }
 
-  console.log("notificationMessage", notificationMessage);
-
   function returnErrorAndDismiss(notificationMessage) {
     return (
       <div>

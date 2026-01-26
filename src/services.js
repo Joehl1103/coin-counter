@@ -8,7 +8,6 @@ const getEntries = async () => {
 };
 
 const addEntry = async (entry) => {
-  console.log("adding entry", entry);
   await axios.post(baseUrl, entry);
 };
 
@@ -18,7 +17,7 @@ const getEntryById = async (id) => {
 };
 
 const deleteEntry = async (id) => {
-  const response = await axios.delete(`${baseUrl}/${id}`);
+  await axios.delete(`${baseUrl}/${id}`);
 };
 
 export default {

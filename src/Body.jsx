@@ -7,7 +7,6 @@ import { useState } from "react";
 function Body(props) {
   const [notificationMessage, setNotificationMessage] = useState("");
   const [notificationType, setNotificationType] = useState(false);
-  console.log("notificationMessage in body", notificationMessage);
 
   function handleNotification(notificationMessage, type) {
     setNotificationMessage(notificationMessage);

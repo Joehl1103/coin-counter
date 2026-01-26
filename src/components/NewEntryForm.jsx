@@ -12,16 +12,12 @@ function getCoinValue(coinType) {
   switch (coinType) {
     case "quarter":
       return COIN_VALUES.QUARTER;
-      break;
     case "dime":
       return COIN_VALUES.DIME;
-      break;
     case "nickel":
       return COIN_VALUES.NICKEL;
-      break;
     case "penny":
       return COIN_VALUES.PENNY;
-      break;
     default:
       throw new Error(`Unrecognized coin type: ${coinType}`);
   }

@@ -1,40 +1,29 @@
-import service from "./../../services.js";
-import { useState, useEffect } from "react";
+import { useMemo } from "react";
 import utils from "../../utils/utils.js";
 import * as styles from "./CoinDisplay.styles.js";
 
+const COIN_NAMES = {
+  PENNY: "penny",
+  DIME: "dime",
+  NICKEL: "nickel",
+  QUARTER: "quarter",
+  N_A: "n/a",
+};
+
 function CoinDisplay({ entries }) {
-  const [quarters, setQuarters] = useState([]);
-  const [nickels, setNickels] = useState([]);
-  const [dimes, setDimes] = useState([]);
-  const [pennies, setPennies] = useState([]);
-  const [n_a, setN_A] = useState([]);
-
-  const COIN_NAMES = {
-    PENNY: "penny",
-    DIME: "dime",
-    NICKEL: "nickel",
-    QUARTER: "quarter",
-    N_A: "n/a",
-  };
-
-  useEffect(() => {
-    service.getEntries().then((entries) => {
-      setQuarters(entries.filter((e) => e.coin === COIN_NAMES.QUARTER));
-      setDimes(entries.filter((e) => e.coin === COIN_NAMES.DIME));
-      setNickels(entries.filter((e) => e.coin === COIN_NAMES.NICKEL));
-      setPennies(entries.filter((e) => e.coin === COIN_NAMES.PENNY));
-      setN_A(entries.filter((e) => e.coin === COIN_NAMES.N_A));
-    });
-  }, [entries]);
+  const { quarters, dimes, nickels, pennies, n_a } = useMemo(() => ({
+    quarters: entries.filter((e) => e.coin === COIN_NAMES.QUARTER),
+    dimes: entries.filter((e) => e.coin === COIN_NAMES.DIME),
+    nickels: entries.filter((e) => e.coin === COIN_NAMES.NICKEL),
+    pennies: entries.filter((e) => e.coin === COIN_NAMES.PENNY),
+    n_a: entries.filter((e) => e.coin === COIN_NAMES.N_A),
+  }), [entries]);
 
   function calcTotal(coinArray) {
     if (coinArray.length === 0) {
       return 0;
     }
-    return coinArray.reduce((acc, current) => {
-      return acc + current.amountAdded;
-    }, 0);
+    return coinArray.reduce((acc, current) => acc + current.amountAdded, 0);
   }
 
   return (
@@ -63,7 +52,7 @@ function CoinDisplay({ entries }) {
         <p>Pennies: ${utils.setAmountToFixed(calcTotal(pennies))}</p>
       </div>
       <div id="n_a" style={styles.coinDisplayStyle}>
-        <p style={styles.returnIcon("rgb(213,213,213")}></p>
+        <p style={styles.returnIcon("rgb(213,213,213)")}></p>
         <p>unknown: ${utils.setAmountToFixed(calcTotal(n_a))}</p>
       </div>
     </div>

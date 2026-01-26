@@ -2,6 +2,25 @@
 
 A React application for tracking coin collections and totals, built with Vite and Material-UI.
 
+## Features
+
+- Track coin additions and totals
+- View coin inventory by type (quarters, dimes, nickels, pennies)
+- Add new coin entries with automatic timestamps
+- Filter entries by date range or count
+- Delete entries with confirmation
+- Real-time total calculations with color-coded coin indicators
+- Notification system for user feedback
+
+## Technologies Used
+
+- React 19
+- Vite
+- Material-UI (MUI)
+- JSON Server for mock API
+- Axios for HTTP requests
+- Vitest for testing
+
 ## Getting Started
 
 ### Prerequisites
@@ -53,25 +72,49 @@ The application will be available at:
 
 ## Available Scripts
 
-- `npm start` - Start both development server and JSON server concurrently
-- `npm run dev` - Start the Vite development server
-- `npm run server` - Start the JSON server with the coin data
-- `npm run build` - Build the application for production
-- `npm run preview` - Preview the production build locally
-- `npm run lint` - Run ESLint to check code quality
+| Command | Description |
+|---------|-------------|
+| `npm start` | Start both development server and JSON server concurrently |
+| `npm run dev` | Start the Vite development server only |
+| `npm run server` | Start the JSON server with the coin data only |
+| `npm run build` | Build the application for production |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint` | Run ESLint to check code quality |
+| `npm test` | Run the test suite with Vitest |
 
-## Features
+## Project Structure
 
-- Track coin additions and totals
-- View coin inventory by type (quarters, dimes, nickels, pennies)
-- Add new coin entries with dates
-- Filter entries by date
-- Responsive Material-UI interface
+```
+src/
+├── main.jsx                    # Application entry point
+├── App.jsx                     # Root component with state management
+├── Body.jsx                    # Main content wrapper
+├── Header.jsx                  # Header component
+├── Footer.jsx                  # Footer component
+├── services.js                 # API service layer
+├── components/
+│   ├── NewEntryForm.jsx        # Form for adding coin entries
+│   ├── Notification.jsx        # Toast notification component
+│   ├── entries/
+│   │   ├── Entries.jsx         # Entry table display
+│   │   ├── Entries.helpers.js  # Table filtering logic
+│   │   └── TableFilter.jsx     # Filter controls
+│   └── totals/
+│       ├── Totals.jsx          # Totals section wrapper
+│       ├── Total.jsx           # Grand total calculator
+│       └── CoinDisplay.jsx     # Per-coin totals display
+├── utils/
+│   └── utils.js                # Utility functions
+└── styles/
+    ├── index.css               # Global styles
+    └── variables.css           # CSS custom properties
+```
 
-## Technologies Used
+## Architecture
 
-- React 19
-- Vite
-- Material-UI (MUI)
-- JSON Server for mock API
-- Axios for HTTP requests
+The application follows a simple component-based architecture:
+
+1. **Data Flow**: App fetches entries from JSON Server, passes them down to child components
+2. **State Management**: React hooks (useState, useEffect) for local state
+3. **API Layer**: Centralized service module handles all HTTP requests
+4. **Styling**: Mix of CSS variables, inline styles, and Material-UI components

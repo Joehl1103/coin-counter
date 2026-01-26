@@ -10,7 +10,6 @@ function TableFilter({ setOption, setFilterDate }) {
 
   function submitDate(event) {
     event.preventDefault()
-    console.log('setting filter date', tempDate)
     setFilterDate(tempDate)
   }
 

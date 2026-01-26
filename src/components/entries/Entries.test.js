@@ -36,7 +36,6 @@ describe("filterTableEntries", () => {
       "all",
       "2025-09-01",
     );
-    console.log(entriesFilteredByDate);
     expect(entriesFilteredByDate).toEqual([
       {
         amountAdded: 1,
