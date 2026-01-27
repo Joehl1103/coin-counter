@@ -47,7 +47,7 @@ function NewEntryForm({ signalReset, handleNotification }) {
     service
       .addEntry(newEntry)
       .then(() => {
-        setCoinType("");
+        setCoinType("quarter");
         setCount(0);
         signalReset();
         handleNotification("Added new entry", true);
