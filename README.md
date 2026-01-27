@@ -46,6 +46,12 @@ https://github.com/user-attachments/assets/080909ca-0da5-4679-a284-045cdd2ca868
    ```bash
    npm install
    ```
+3. Initialize the database:
+   The application uses JSON Server with a `db.json` file to store coin entries. Create an empty database file with the correct structure:
+   ```bash
+   echo '{"entries": []}' > db.json
+   ```
+   This file will be created locally and is not tracked in version control (see `.gitignore`).
 
 ### Running the Application
 

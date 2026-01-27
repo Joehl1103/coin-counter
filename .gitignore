@@ -12,6 +12,7 @@ lerna-debug.log*
 .env.*
 *.csv
 *.xlsx
+db.json
 
 node_modules
 dist
