@@ -2,9 +2,6 @@ function checkForFilterDate(entries, filterDate) {
   if (filterDate.length > 0) {
     return entries.filter((e) => {
       const dateOnly = e.dateAdded.substring(0, 10);
-      if (dateOnly === filterDate) {
-        console.log(e);
-      }
       return dateOnly === filterDate;
     });
   }

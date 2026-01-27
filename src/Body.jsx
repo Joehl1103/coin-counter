@@ -1,20 +1,20 @@
+import { useState, useCallback } from "react";
 import Notification from "./components/Notification.jsx";
-import Totals from "./components/totals/Totals.jsx";
+import Totals from "./components/totals/index.jsx";
 import Entries from "./components/entries/index.jsx";
 import NewEntryForm from "./components/NewEntryForm.jsx";
-import { useState } from "react";
 
 function Body(props) {
   const [notificationMessage, setNotificationMessage] = useState("");
   const [notificationType, setNotificationType] = useState(false);
 
-  function handleNotification(notificationMessage, type) {
+  const handleNotification = useCallback((notificationMessage, type) => {
     setNotificationMessage(notificationMessage);
     setNotificationType(type);
     setTimeout(() => {
       setNotificationMessage("");
     }, 5000);
-  }
+  }, []);
 
   const notificationDivStyle = {
     display: "flex",

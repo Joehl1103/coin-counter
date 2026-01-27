@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import utils from "../../utils.js";
-import * as styles from "./CoinDisplay.styles.js";
+import * as styles from "./coinDisplay.styles.js";
 
 const COIN_NAMES = {
   PENNY: "penny",

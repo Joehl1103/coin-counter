@@ -25,11 +25,7 @@ const Entries = ({ entries, setEntries, handleNotification }) => {
     } catch (e) {
       handleNotification(e.message, false);
     }
-  }, [entries, option, filterDate]);
-
-  // if (filteredEntries.length === 0) {
-  //   return <div>No entries...</div>;
-  // }
+  }, [entries, option, filterDate, handleNotification]);
 
   function setDisplay() {
     if (displayConst === "contents") {
@@ -83,7 +79,6 @@ const Entries = ({ entries, setEntries, handleNotification }) => {
           </TableHead>
           <TableBody>
             {filteredEntries.map((e) => {
-              console.log(e);
               index++;
               return (
                 <TableRow key={e.id}>
