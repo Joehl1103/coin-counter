@@ -3,15 +3,14 @@
 A React application for tracking coin collections and totals, built with Vite and Material-UI.
 
 Prologue and Genesis:
-* I spent a really long time in 2021 organizing all of my coins to exchange them at the bank (no, I don't want to use Coinstar).
-* Improvement was to create color-coded spreadsheet linked to a QR code that I could scan with my phone every time I added a coin.
-* This is the latest and best iteration of a useful utility that helps me track how many coins I have so that I can know when to go trade them in. 
+
+- I spent a really long time in 2021 organizing all of my coins to exchange them at the bank (no, I don't want to use Coinstar).
+- Improvement was to create color-coded spreadsheet linked to a QR code that I could scan with my phone every time I added a coin.
+- This is the latest and best iteration of a useful utility that helps me track how many coins I have so that I can know when to go trade them in.
 
 ## Demo
 
-
 https://github.com/user-attachments/assets/080909ca-0da5-4679-a284-045cdd2ca868
-
 
 ## Features
 
@@ -31,6 +30,10 @@ https://github.com/user-attachments/assets/080909ca-0da5-4679-a284-045cdd2ca868
 - JSON Server for mock API
 - Axios for HTTP requests
 - Vitest for testing
+
+## Testing
+
+Minimal testing exists to cover key helpers and basic of API service layer.
 
 ## Getting Started
 
